@@ -1,0 +1,41 @@
+#content {
+    border:3px solid gray;
+    font-style: Arial, Tahoma, sans-serif;    
+    font-size: 18px;
+    font-weight: bold;
+    width: 431px;
+}
+
+#content .one {
+    color: green;
+}
+
+#content .two {
+    color: blue;
+}
+
+#content .three {
+    color: red;
+}
+
+table.area {
+    border-collapse: collapse;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+table.area td {
+    border:1px solid #eee;
+    width:40px;
+    height:40px;
+    text-align: center;
+    vertical-align: middle;
+}
+table.area td:hover {
+    background-color: #eee;
+    cursor: pointer;
+}
