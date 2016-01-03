@@ -10,7 +10,7 @@ var Game = {
         for(var i = 0; i < HEIGHT; i++) {
             var row = [];
             for(var j = 0; j < WIDTH; j++) {
-                row.push(Math.round(Math.random() * 20) == 1 ? BOMB : EMPTY);
+                row.push(Math.round(Math.random() * 10) == 1 ? BOMB : EMPTY);
             }
             _map.push(row)
         }
