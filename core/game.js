@@ -12,7 +12,7 @@ var Game = {
             for(var j = 0; j < WIDTH; j++) {
                 row.push(Math.round(Math.random() * 10) == 1 ? BOMB : EMPTY);
             }
-            _map.push(row)
+            _map.push(row);
         }
         return _map;
     },
@@ -32,7 +32,9 @@ var Game = {
             x >= WIDTH ||
             y >= WIDTH ||
             map[y][x] != -1
-        ) return [];
+        ) {
+            return [];
+        }
         
         var self = this;
 
@@ -41,7 +43,7 @@ var Game = {
         updates.push({x: x, y: y, v: around});
         map = this.applyUpdate(map, updates);
 
-        if (around == 0) {
+        if (around === 0) {
             // calculate deeper
             [-1, 0, 1].map(function (delta_y) {
                 [-1, 0, 1].map(function (delta_x) {                    
@@ -49,7 +51,7 @@ var Game = {
                     map = self.applyUpdate(map, u);
                     updates.concat(u);
                 });
-            })
+            });
         }
 
         return updates;
@@ -82,8 +84,8 @@ var Game = {
             case EMPTY:
                 var updates = Game.getUpdatesForShoot(map, x, y);
                 var result_map = Game.applyUpdate(map, updates);
-                return [this.checkWin(map) == 0 ? "win" : result_map[y][x], result_map];
-            default: return ["none", map]
+                return [this.checkWin(map) === 0 ? "win" : result_map[y][x], result_map];
+            default: return ["none", map];
         }
     },
 
@@ -103,5 +105,5 @@ var Game = {
             }, 0);                    
         }, 0);
     }
-}
+};
 
