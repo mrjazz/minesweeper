@@ -46,7 +46,7 @@ var Cell = React.createClass({
     }
 });
 
-var Area = React.createClass({
+var GameArea = React.createClass({
     getInitialState: function() {
         return {game: Game.init()};
     },
@@ -58,6 +58,9 @@ var Area = React.createClass({
             map = Game.showMines(map)
         }
         this.setState({game: map});            
+    },
+    restart: function () {
+        this.setState(this.getInitialState());
     },
     render: function() {
         var map = this.state.game;
@@ -73,11 +76,18 @@ var Area = React.createClass({
             return <tr key={i}>{rows(i)}</tr>;
         })
 
-        return <table className="area"><tbody>{html}</tbody></table>;
+        return <div>
+                <table className="area"><tbody>{html}</tbody></table>
+                <div className="game-btns">
+                    <button onClick={this.restart}>Restart</button>
+                </div>
+            </div>;
     }
 });
 
+
 ReactDOM.render(
-    <Area/>,
+    <GameArea/>,
     document.getElementById("content")
 );
+

@@ -1,3 +1,8 @@
+.game-btns {
+    text-align: center;
+    padding: 10px;
+}
+
 #content {
     border:3px solid gray;
     font-style: Arial, Tahoma, sans-serif;    
@@ -30,8 +35,8 @@ table.area {
 
 table.area td {
     border:1px solid #eee;
-    width:40px;
-    height:40px;
+    width:41px;
+    height:41px;
     text-align: center;
     vertical-align: middle;
 }
