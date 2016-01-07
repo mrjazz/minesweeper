@@ -54,7 +54,34 @@
         }
     });
 
+    var GameBtns = React.createClass({
+        render: function () {
+            return <div className="game-btns">
+                        <button onClick={this.props.restart}>Restart</button>
+                    </div>
+        }
+    });
+
     var GameArea = React.createClass({
+        render: function () {
+            var map = this.props.map;
+            var cellClick = this.props.cellClick;
+
+            function rows(j) {
+                return range(10).map(function (i) {
+                    return <Cell key={i} x={i} y={j} value={map[j][i]} cellClick={cellClick}/>;
+                })
+            }
+
+            var html = range(10).map(function (i) {
+                return <tr key={i}>{rows(i)}</tr>;
+            })
+
+            return <table className="area"><tbody>{html}</tbody></table>
+        }
+    });
+
+    var GameUI = React.createClass({
         getInitialState: function() {
             return {game: Game.init()};
         },
@@ -71,31 +98,16 @@
             this.setState(this.getInitialState());
         },
         render: function() {
-            var map = this.state.game;
-            var cellClick = this.cellClick;
-
-            function rows(j) {
-                return range(10).map(function (i) {
-                    return <Cell key={i} x={i} y={j} value={map[j][i]} cellClick={cellClick}/>;
-                })
-            }
-
-            var html = range(10).map(function (i) {
-                return <tr key={i}>{rows(i)}</tr>;
-            })
-
             return <div>
-                    <table className="area"><tbody>{html}</tbody></table>
-                    <div className="game-btns">
-                        <button onClick={this.restart}>Restart</button>
-                    </div>
-                </div>;
+                    <GameArea map={this.state.game} cellClick={this.cellClick}/>
+                    <GameBtns restart={this.restart}/>
+                </div>
         }
     });
 
 
     ReactDOM.render(
-        <GameArea/>,
+        <GameUI/>,
         document.getElementById("content")
     );
 
