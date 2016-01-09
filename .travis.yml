@@ -17,4 +17,4 @@ install:
   # Install npm dependencies and ensure that npm cache is not stale
   - npm install
 script:
-  - karma start --single-run
+  - karma start --single-run --browsers Firefox
