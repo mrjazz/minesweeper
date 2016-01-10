@@ -1,13 +1,55 @@
 {
-    "scripts": {
-        "test": "karma start karma.conf.js"
-    },
-    "devDependencies": {
-        "jasmine-core": "^2.3.4",
-        "karma": "^0.12.31",
-        "karma-coverage": "0.1.5",
-        "karma-chrome-launcher": "^0.1.12",
-        "karma-firefox-launcher": "^0.1.3",
-        "karma-jasmine": "^0.3.5"
-    }
+  "name": "minesweeper",
+  "version": "1.0.0",
+  "description": "Minesweeper is simple game implemented with react.js",
+  "scripts": {
+    "test": "karma start karma.conf.js",
+    "start": "node server.js",
+    "lint": "eslint src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrjazz/minesweeper.git"
+  },
+  "keywords": [
+    "game",
+    "minesweeper",
+    "react",
+    "reactjs",
+    "hot",
+    "reload",
+    "webpack"
+  ],
+  "author": "Denis Sheremetov (http://github.com/mrjazz)",
+  "license": "MIT",
+  "homepage": "https://github.com/mrjazz/minesweeper",
+  "dependencies": {
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.0.20",
+    "babel-eslint": "^4.1.3",
+    "babel-loader": "^6.0.1",
+    "babel-preset-es2015": "^6.0.15",
+    "babel-preset-react": "^6.0.15",
+    "babel-preset-stage-0": "^6.0.15",
+    "eslint-plugin-react": "^3.6.2",
+    "react-hot-loader": "^1.3.0",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.1",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.12.31",
+    "karma-coverage": "0.1.5",
+    "karma-chrome-launcher": "^0.1.12",
+    "karma-firefox-launcher": "^0.1.3",
+    "karma-jasmine": "^0.3.5"
+  },
+  "bugs": {
+    "url": "https://github.com/mrjazz/minesweeper/issues"
+  },
+  "main": "bundle.js",
+  "directories": {
+    "test": "tests"
+  }
 }

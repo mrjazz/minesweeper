@@ -3,9 +3,9 @@ var BOMB = 9;
 var WIDTH = 10;
 var HEIGHT = 10;
 
-var Game = {
+export default class Game {
 
-    init: function() {
+    static init() {
         var _map = [];
         for(var i = 0; i < HEIGHT; i++) {
             var row = [];
@@ -15,17 +15,17 @@ var Game = {
             _map.push(row);
         }
         return _map;
-    },
+    }
 
-    applyUpdate: function (map, updates) {
+    static applyUpdate(map, updates) {
         for (var i in updates) {
             var update = updates[i];
             map[update.y][update.x] = update.v;
         }
         return map;
-    },
+    }
 
-    getUpdatesForShoot: function (map, x, y) {        
+    static getUpdatesForShoot(map, x, y) {        
         if (        
             x < 0 ||
             y < 0 ||
@@ -55,9 +55,9 @@ var Game = {
         }
 
         return updates;
-    },
+    }
 
-    howManyAround: function(map, x, y) {
+    static howManyAround(map, x, y) {
         var result = 0;
 
         if (y > 0 && map[y - 1][x] == BOMB) result++;
@@ -73,9 +73,9 @@ var Game = {
         if (y < HEIGHT - 1 && x < WIDTH - 1 && map[y + 1][x + 1] == BOMB) result++;
 
         return result;
-    },
+    }
 
-    shoot: function(map, x, y) {        
+    static shoot(map, x, y) {
         if (y >= map.length || x >= map[0].length) return ["none", map];
         if (y < 0 || x < 0) return ["none", map];
 
@@ -87,23 +87,23 @@ var Game = {
                 return [this.checkWin(map) === 0 ? "win" : result_map[y][x], result_map];
             default: return ["none", map];
         }
-    },
+    }
 
-    showMines: function (map) {
+    static showMines(map) {
         for (var i in map) {
             for (var j in map[i]) {
                 map[i][j] = map[i][j] == 9 ? 10 : map[i][j];
             }
         }
         return map;
-    },
+    }
 
-    checkWin: function (map) {
+    static checkWin(map) {
         return map.reduce(function (res, row, i) {
             return res + row.reduce(function (res, col, j) {                
                 return res + (map[i][j] == -1 ? 1 : 0);
             }, 0);                    
         }, 0);
     }
-};
+}
 
