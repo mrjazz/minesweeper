@@ -8,7 +8,7 @@
     font-style: Arial, Tahoma, sans-serif;    
     font-size: 18px;
     font-weight: bold;
-    width: 431px;
+    width: 411px;
 }
 
 #content .one {
@@ -30,16 +30,28 @@ table.area {
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none;
+    user-select: none;    
 }
 
-table.area td {
-    border:1px solid #eee;
-    width:41px;
-    height:41px;
-    text-align: center;
-    vertical-align: middle;
+img {
+    border: 0px;
+    padding: 0px;
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+    display:table-cell;    
 }
+
+table.area tr td {    
+    text-align: center;
+    border:1px solid #eee;
+    width:40px;
+    height:40px;    
+    vertical-align: middle;
+    padding: 0px;
+    margin: 0px;
+}
+
 table.area td:hover {
     background-color: #eee;
     cursor: pointer;
