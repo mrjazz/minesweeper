@@ -25,6 +25,7 @@ module.exports = function(config) {
             require('karma-webpack'),
             require('karma-jasmine'),
             require('karma-es5-shim'),
+            require('karma-firefox-launcher'),
             require('karma-phantomjs-launcher')
         ],
         webpackServer: {

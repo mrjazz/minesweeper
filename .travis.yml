@@ -14,7 +14,7 @@ install:
   # Check the size of caches
   - du -sh ./node_modules ./bower_components/ ./docs/bower_components/ || true
   # Install npm dependencies and ensure that npm cache is not stale
-  - rm -rf node_modules/
+  # - rm -rf node_modules/
   - npm install
 script:
   - ./node_modules/karma/bin/karma start --single-run --browsers Firefox
