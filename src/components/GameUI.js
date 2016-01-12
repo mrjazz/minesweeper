@@ -35,7 +35,7 @@ class Cell extends Component {
         var tag = this.props.value;
         switch (this.props.value) {
         case 0:
-                tag = "";
+                tag = '';
                 break;
             case -1:
             case 9:

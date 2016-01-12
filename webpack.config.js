@@ -9,7 +9,7 @@ module.exports = {
         new webpack.NoErrorsPlugin()
     ],
     entry: [
-        'webpack-dev-server/client?http://localhost:3001',
+        'webpack-dev-server/client?http://localhost:3000',
         'webpack/hot/only-dev-server',
         './src/index'
     ],
