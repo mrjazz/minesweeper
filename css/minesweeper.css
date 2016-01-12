@@ -4,8 +4,8 @@
 }
 
 #content {
-    border:3px solid gray;
-    font-style: Arial, Tahoma, sans-serif;    
+    font-family: Tahoma, sans-serif;
+    border:3px solid gray;    
     font-size: 18px;
     font-weight: bold;
     width: 411px;
@@ -55,4 +55,16 @@ table.area tr td {
 table.area td:hover {
     background-color: #eee;
     cursor: pointer;
+}
+
+#content .status {    
+    height: 411px;
+}
+
+#content .status h1 {
+    text-align: center;
+    margin: 0px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }

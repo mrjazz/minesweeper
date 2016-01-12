@@ -86,29 +86,57 @@ var GameArea = React.createClass({
 });
 
 
+export default class GameStatus extends Component {
+
+    render() {
+        return <div className="status">
+                <h1>{this.props.message}</h1>
+            </div>
+    }
+
+}
+
 export default class GameUI extends Component {	
     constructor(props) {
         super(props);
-        this.state = {game: Game.init()};        
+        this.state = this.getInitState();
     }	
 
     cellClick = (x, y) => {        
         var result = Game.shoot(this.state.game, x, y);
-        var map = result[1];
-        console.log(result[0]);
-        if(result[0] == "fail") {
+        var map = result[1];      
+        var status = Number.isInteger(result[0]) ? 'play' : result[0];  
+        console.log(result[0], status);
+        if(result[0] == 'fail') {
             map = Game.showMines(map);
         }
-        this.setState({game: map});
+
+        this.setState({game: map, status: status});
     };
     
     restart = (event) => {
-        this.setState({game: Game.init()});
+        this.setState(this.getInitState());
     };
+
+    getInitState() {
+        return {game: Game.init(), status: 'play'}
+    }
         
     render() {
+        var game_area;        
+        switch (this.state.status) {
+            case 'fail':
+                game_area = <GameStatus message="You Loose"/>
+                break;
+            case 'win':
+                game_area = <GameStatus message="You Win"/>
+                break;
+            default:
+                game_area = <GameArea map={this.state.game} cellClick={this.cellClick}/>
+        }
+                
         return <div>
-                <GameArea map={this.state.game} cellClick={this.cellClick}/>
+                {game_area}
                 <GameBtns restart={this.restart}/>
             </div>
     }
