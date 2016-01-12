@@ -1,7 +1,7 @@
 {
   "name": "minesweeper",
   "version": "1.0.0",
-  "description": "Minesweeper is simple game implemented with react.js",
+  "description": "Minesweeper is simple game implemented with react.js. Can be used as boilerplate for react.js projects.",
   "scripts": {
     "test": "karma start karma.conf.js",
     "test-once": "karma start karma.conf.js start --single-run",
@@ -19,7 +19,10 @@
     "reactjs",
     "hot",
     "reload",
-    "webpack"
+    "webpack",
+    "es6",
+    "karma",
+    "jasmine"
   ],
   "author": "Denis Sheremetov (http://github.com/mrjazz)",
   "license": "MIT",

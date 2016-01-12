@@ -2,5 +2,11 @@ Minesweeper [![Build Status](https://travis-ci.org/mrjazz/minesweeper.svg?branch
 =========
 
 Minesweeper is simple game implemented with react.js
+Can be used as boilerplate for react applications with:
+
+ - Webpack
+ - ES6
+ - [React Hot Reloader](https://github.com/gaearon/react-hot-loader)
+ - Tests with Karma and Jasmine
 
 [Here is the demo](http://mrjazz.github.io/minesweeper/)
