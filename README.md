@@ -9,5 +9,6 @@ Can be used as boilerplate for react applications with:
  - [React Hot Reloader](https://github.com/gaearon/react-hot-loader)
  - Tests with Karma and Jasmine
  - Continious integration with Travis service
+ - Automation for production build
 
 [Here is the demo](http://mrjazz.github.io/minesweeper/)
