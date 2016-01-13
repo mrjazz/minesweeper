@@ -66,8 +66,8 @@ class GameBtns extends Component {
     }
 }
 
-var GameArea = React.createClass({
-    render: function () {
+export default class GameArea extends Component {
+    render() {
         var map = this.props.map;
         var cellClick = this.props.cellClick;
 
@@ -83,17 +83,15 @@ var GameArea = React.createClass({
 
         return <table className="area"><tbody>{html}</tbody></table>
     }
-});
+}
 
 
 export default class GameStatus extends Component {
-
     render() {
         return <div className="status">
                 <h1>{this.props.message}</h1>
             </div>
     }
-
 }
 
 export default class GameUI extends Component {	
@@ -109,8 +107,7 @@ export default class GameUI extends Component {
         console.log(result[0], status);
         if(result[0] == 'fail') {
             map = Game.showMines(map);
-        }
-
+        }        
         this.setState({game: map, status: status});
     };
     
@@ -123,7 +120,7 @@ export default class GameUI extends Component {
     }
         
     render() {
-        var game_area;        
+        var game_area;
         switch (this.state.status) {
             case 'fail':
                 game_area = <GameStatus message="You Loose"/>
@@ -134,11 +131,10 @@ export default class GameUI extends Component {
             default:
                 game_area = <GameArea map={this.state.game} cellClick={this.cellClick}/>
         }
-                
+        
         return <div>
                 {game_area}
                 <GameBtns restart={this.restart}/>
             </div>
     }
-
 }

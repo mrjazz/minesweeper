@@ -1,10 +1,14 @@
-var EMPTY = -1;
-var BOMB = 9;
-var WIDTH = 10;
-var HEIGHT = 10;
+const EMPTY = -1;
+const BOMB = 9;
+const DEMINED = 10;
+const WIDTH = 10;
+const HEIGHT = 10;
 
 export default class Game {
 
+    /**
+     * Generate init map
+     */
     static init() {
         var _map = [];
         for(var i = 0; i < HEIGHT; i++) {
@@ -17,6 +21,9 @@ export default class Game {
         return _map;
     }
 
+    /**
+     * Apply set of updates on map
+     */
     static applyUpdate(map, updates) {
         for (var i in updates) {
             var update = updates[i];
@@ -25,21 +32,24 @@ export default class Game {
         return map;
     }
 
+    /**
+     * Retrieve updates for shoot
+     */
     static getUpdatesForShoot(map, x, y) {        
         if (        
             x < 0 ||
             y < 0 ||
             x >= WIDTH ||
-            y >= WIDTH ||
+            y >= HEIGHT ||
             map[y][x] != -1
         ) {
             return [];
         }
         
         var self = this;
-
         var updates = [];
-        var around = this.howManyAround(map, x, y);        
+        var around = this.howManyAround(BOMB, map, x, y);        
+
         updates.push({x: x, y: y, v: around});
         map = this.applyUpdate(map, updates);
 
@@ -52,31 +62,44 @@ export default class Game {
                     updates.concat(u);
                 });
             });
-        }
+        }        
 
         return updates;
     }
 
-    static howManyAround(map, x, y) {
+    static openDemined(map) {
+        return map.map(function (row, i) {
+            return row.map(function (col, j) {
+                if (map[i][j] == BOMB && Game.howManyAround(EMPTY, map, j, i) == 0) {
+                    return DEMINED;
+                } else {
+                    return map[i][j];
+                }
+            }, 0);
+        }, 0);
+    }
+
+    static howManyAround(type, map, x, y) {
         var result = 0;
 
-        if (y > 0 && map[y - 1][x] == BOMB) result++;
-        if (y < HEIGHT - 1 && map[y + 1][x] == BOMB) result++;
+        if (y > 0 && map[y - 1][x] == type) result++;
+        if (y < HEIGHT - 1 && map[y + 1][x] == type) result++;
 
-        if (x < WIDTH - 1 && map[y][x + 1] == BOMB) result++;
-        if (x > 0 && map[y][x - 1] == BOMB) result++;
+        if (x < WIDTH - 1 && map[y][x + 1] == type) result++;
+        if (x > 0 && map[y][x - 1] == type) result++;
 
-        if (y > 0 && x > 0 && map[y - 1][x - 1] == BOMB) result++;
-        if (y > 0 && x < HEIGHT - 1 && map[y - 1][x + 1] == BOMB) result++;
+        if (y > 0 && x > 0 && map[y - 1][x - 1] == type) result++;
+        if (y > 0 && x < HEIGHT - 1 && map[y - 1][x + 1] == type) result++;
 
-        if (y < HEIGHT - 1 && x > 0 && map[y + 1][x - 1] == BOMB) result++;
-        if (y < HEIGHT - 1 && x < WIDTH - 1 && map[y + 1][x + 1] == BOMB) result++;
+        if (y < HEIGHT - 1 && x > 0 && map[y + 1][x - 1] == type) result++;
+        if (y < HEIGHT - 1 && x < WIDTH - 1 && map[y + 1][x + 1] == type) result++;
 
         return result;
-    }
+    }    
 
     static shoot(map, x, y) {
         if (y >= map.length || x >= map[0].length) return ["none", map];
+        //console.log(x, y, this.howManyAround([EMPTY, ], map, x, y));
         if (y < 0 || x < 0) return ["none", map];
 
         switch(map[y][x]) {
@@ -84,6 +107,10 @@ export default class Game {
             case EMPTY:
                 var updates = Game.getUpdatesForShoot(map, x, y);
                 var result_map = Game.applyUpdate(map, updates);
+                
+                // open demined mines
+                result_map = this.openDemined(result_map);
+
                 return [this.checkWin(map) === 0 ? "win" : result_map[y][x], result_map];
             default: return ["none", map];
         }
@@ -92,7 +119,7 @@ export default class Game {
     static showMines(map) {
         for (var i in map) {
             for (var j in map[i]) {
-                map[i][j] = map[i][j] == 9 ? 10 : map[i][j];
+                map[i][j] = map[i][j] == 9 ? DEMINED : map[i][j];
             }
         }
         return map;
@@ -101,6 +128,9 @@ export default class Game {
     static checkWin(map) {
         return map.reduce(function (res, row, i) {
             return res + row.reduce(function (res, col, j) {                
+                // if (map[i][j] == BOMB) {                    
+                //     console.log(i, j, Game.howManyClosed(EMPTY, map, j, i))
+                // }
                 return res + (map[i][j] == -1 ? 1 : 0);
             }, 0);                    
         }, 0);
