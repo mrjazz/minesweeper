@@ -134,7 +134,7 @@ export default class GameUI extends Component {
         
         return <div>
                 {game_area}
-                <GameBtns restart={this.restart}/>
+                <GameBtns restart={this.restart}/>               
             </div>
     }
 }
