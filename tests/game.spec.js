@@ -1,13 +1,15 @@
 // jest.dontMock('../js/game');
 // var game = require('../js/game');
 
+import 'should';
+
 import Game from '../src/game.js';
 
 describe('game', function() {
-    it('game init', function() {            	
-        var map = Game.init();        
-        expect(map.length).toBe(10);
-        expect(map[0].length).toBe(10);
+    it('game init', function() {
+        var map = Game.init();
+        map.length.should.equal(10);
+        map[0].length.should.equal(10);
     });
 
    it('game shoot', function() {
@@ -24,16 +26,18 @@ describe('game', function() {
            [ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 ]
        ];
 
-       expect(Game.shoot(map, -1, -1)[0]).toBe("none");
-       expect(Game.shoot(map, 10, 10)[0]).toBe("none");
-       expect(Game.shoot(map, 0, 0)[0]).toBe(2);
-       // expect(Game.shoot(map, 0, 1)[0]).toBe(3);
-       // expect(Game.shoot(map, 0, 2)[0]).toBe(2);
-       // expect(Game.shoot(map, 0, 3)[0]).toBe(1);
-       // expect(Game.shoot(map, 0, 4)[0]).toBe(0);
-       // expect(Game.shoot(map, 2, 1)[0]).toBe(5);
-       // expect(Game.shoot(map, 9, 1)[0]).toBe(1);
-       expect(Game.shoot(map, 1, 0)[0]).toBe("fail");        
+       Game.shoot(map, -1, -1)[0].should.equal('none');
+       Game.shoot(map, 10, 10)[0].should.equal('none');
+       Game.shoot(map, 0, 0)[0].should.equal(2);
+       Game.shoot(map, 1, 0)[0].should.equal('fail');
+
+       Game.shoot(map, 0, 1)[0].should.equal(3);
+       Game.shoot(map, 0, 2)[0].should.equal(2);
+       Game.shoot(map, 0, 3)[0].should.equal(1);
+       Game.shoot(map, 0, 4)[0].should.equal(0);
+       Game.shoot(map, 2, 1)[0].should.equal(5);
+       Game.shoot(map, 9, 1)[0].should.equal(1);
+
    });
 
    it('game shoot2', function() {
@@ -50,9 +54,9 @@ describe('game', function() {
            [ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 ]
        ];
 
-       var result = Game.shoot(map, 0, 0);        
-       expect(result[0]).toBe(0); // nothing
-       expect(result[1][0][0]).toBe(0);
+       var result = Game.shoot(map, 0, 0);
+       result[0].should.equal(0); // nothing
+       result[1][0][0].should.equal(0);
    });
 
    it('game shoot2', function() {
@@ -72,12 +76,12 @@ describe('game', function() {
        var updates = Game.getUpdatesForShoot(map, 0, 0);
        var result_map = Game.applyUpdate(map, updates);
        //console.log(result_map);
-       expect(result_map[0][0]).toBe(0); // nothing
-       expect(result_map[0][1]).toBe(2);
-       expect(result_map[1][0]).toBe(0);
-       expect(result_map[1][1]).toBe(3);
-       expect(result_map[2][0]).toBe(2);
-       expect(result_map[2][1]).toBe(5);        
+       result_map[0][0].should.equal(0); // nothing
+       result_map[0][1].should.equal(2);
+       result_map[1][0].should.equal(0);
+       result_map[1][1].should.equal(3);
+       result_map[2][0].should.equal(2);
+       result_map[2][1].should.equal(5);
    });
 
    it('apply update1', function() {
@@ -94,8 +98,8 @@ describe('game', function() {
            [ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 ]
        ];
 
-       var result = Game.applyUpdate(map, [{x:1, y:1, v:2}]);        
-       expect(result[1][1]).toBe(2);
+       var result = Game.applyUpdate(map, [{x:1, y:1, v:2}]);
+       result[1][1].should.equal(2);
    });
 
    it('apply update2', function() {
@@ -112,8 +116,8 @@ describe('game', function() {
            [ -1, -1, -1, -1, -1, -1,  9, -1, -1, -1 ]
        ];
 
-       var result = Game.applyUpdate(map, [{x:9, y:9, v:0}]);        
-       expect(result[9][9]).toBe(0);
+       var result = Game.applyUpdate(map, [{x:9, y:9, v:0}]);
+       result[9][9].should.equal(0);
    });
 
    it('game shoot3', function() {
@@ -130,20 +134,18 @@ describe('game', function() {
            [ -1, -1, -1, -1, -1, -1,  9, -1, -1, -1 ]
        ];
 
-       var updates = Game.getUpdatesForShoot(map, 9, 9);        
+       var updates = Game.getUpdatesForShoot(map, 9, 9);
        var result_map = Game.applyUpdate(map, updates);
 
-       expect(result_map[9][9]).toBe(0);
-       expect(result_map[9][8]).toBe(0);
-       expect(result_map[9][7]).toBe(2);
-
-       expect(result_map[8][9]).toBe(0);
-       expect(result_map[8][8]).toBe(0);
-       expect(result_map[8][7]).toBe(3);
-
-       expect(result_map[7][9]).toBe(2);
-       expect(result_map[7][8]).toBe(3);
-       expect(result_map[7][7]).toBe(5);                
+       result_map[9][9].should.equal(0);
+       result_map[9][8].should.equal(0);
+       result_map[9][7].should.equal(2);
+       result_map[8][9].should.equal(0);
+       result_map[8][8].should.equal(0);
+       result_map[8][7].should.equal(3);
+       result_map[7][9].should.equal(2);
+       result_map[7][8].should.equal(3);
+       result_map[7][7].should.equal(5);
    });
 
    it('checkWin', function() {
@@ -158,8 +160,8 @@ describe('game', function() {
            [ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 ],
            [ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 ],
            [ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 ]
-       ];        
-       expect(Game.checkWin(map)).toBe(99);
+       ];
+       Game.checkWin(map).should.equal(99);
    });
 
    it('openDemined', function() {
@@ -176,12 +178,12 @@ describe('game', function() {
            [ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 ]
        ];
 
-       expect(Game.howManyAround(-1, map, 0, 0)).toBe(0);
-       expect(map[1][8]).toBe(9);
-       expect(Game.howManyAround(-1, map, 8, 1)).toBe(5);
+       Game.howManyAround(-1, map, 0, 0).should.equal(0);
+       map[1][8].should.equal(9);
+       Game.howManyAround(-1, map, 8, 1).should.equal(5);
 
        map = Game.openDemined(map);
-       expect(map[0][0]).toBe(10);
+       map[0][0].should.equal(10);
    });
 
    it('openDemined2', function() {
@@ -197,13 +199,12 @@ describe('game', function() {
            [ -1, -1, -1,  2,  2,  1,  2,  2,  1, -1 ],
            [ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 ]
        ];
-       
-      expect(map[7][7]).toBe(9);
-      expect(Game.howManyAround(-1, map, 7, 7)).toBe(2);
+
+      map[7][7].should.equal(9);
+      Game.howManyAround(-1, map, 7, 7).should.equal(2);
 
       map = Game.openDemined(map);
-      expect(map[7][7]).toBe(9); 
-
+      map[7][7].should.equal(9);
    });
 
 });
