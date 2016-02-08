@@ -8,7 +8,7 @@
     "start": "node server.js",
     "build": "node_modules/.bin/webpack --verbose --colors --display-error-details --config webpack/common.config.js",
     "build:production": "npm run clean && npm run build",
-    "lint": "eslint src"
+    "lint": "eslint public\\js"
   },
   "repository": {
     "type": "git",

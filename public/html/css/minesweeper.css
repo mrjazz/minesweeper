@@ -3,23 +3,23 @@
     padding: 10px;
 }
 
-#content {
+#app {
     font-family: Tahoma, sans-serif;
-    border:3px solid gray;    
+    border:3px solid gray;
     font-size: 18px;
     font-weight: bold;
     width: 411px;
 }
 
-#content .one {
+#app .one {
     color: green;
 }
 
-#content .two {
+#app .two {
     color: blue;
 }
 
-#content .three {
+#app .three {
     color: red;
 }
 
@@ -30,7 +30,7 @@ table.area {
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none;    
+    user-select: none;
 }
 
 img {
@@ -39,14 +39,14 @@ img {
     margin: 5px;
     width: 30px;
     height: 30px;
-    display:table-cell;    
+    display:table-cell;
 }
 
-table.area tr td {    
+table.area tr td {
     text-align: center;
     border:1px solid #eee;
     width:40px;
-    height:40px;    
+    height:40px;
     vertical-align: middle;
     padding: 0px;
     margin: 0px;
@@ -57,11 +57,11 @@ table.area td:hover {
     cursor: pointer;
 }
 
-#content .status {    
+#app .status {
     height: 411px;
 }
 
-#content .status h1 {
+#app .status h1 {
     text-align: center;
     margin: 0px;
     position: relative;

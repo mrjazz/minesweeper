@@ -11,10 +11,10 @@ module.exports = {
     entry: [
         'webpack-dev-server/client?http://localhost:3000',
         'webpack/hot/only-dev-server',
-        './src/index'
+        './public/js/index'
     ],
     output: {
-        path: path.join(__dirname, './dist'),
+        path: path.join(__dirname, './public/dist'),
         filename: 'bundle.js',
         publicPath: '/static/'
     },
@@ -22,8 +22,17 @@ module.exports = {
         loaders: [{
             test: /\.jsx$|\.js$/,
             loaders: ['react-hot', 'babel'],
-            include: path.join(__dirname, './src')
-        }]
+            include: path.join(__dirname, './public/js')
+        // },
+        // { test: /\.css$/, loader: 'style-loader!css-loader' },
+        // { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url?limit=10000' },
+        // {
+        //     test: /\.(jpe?g|png|gif|svg)$/i,
+        //     loaders: [
+        //       'file?hash=sha512&digest=hex&name=[hash].[ext]',
+        //       'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+        //     ]
+        }],
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
