@@ -17,4 +17,4 @@ install:
   - rm -rf node_modules/
   - npm install
 script:
-  - ./node_modules/karma/bin/karma start --single-run --browsers Firefox
+  - ./npm test
