@@ -6,8 +6,8 @@ cache:
 notifications:
   email: true
 node_js:
-  - stable  
-before_script:  
+  - stable
+before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 install:
@@ -17,4 +17,4 @@ install:
   - rm -rf node_modules/
   - npm install
 script:
-  - ./npm test
+  - node_modules/.bin/mocha --compilers js:babel-core/register --recursive tests
